@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
 import Draggable from "react-draggable";
+import { TextLabel } from "../models/TextLabel";
 
 
 type Pos = {
@@ -8,16 +8,14 @@ type Pos = {
 }
 
 type SpriteProps = {
-    id: number;
-    text: string;
-    size: number;
+    label: TextLabel,
 }
 
-export const Sprite: React.FC<SpriteProps> = ({ id, text, size }) => {
+export const Sprite: React.FC<SpriteProps> = ({ label }) => {
 
     const selectedStyle: React.CSSProperties = {
         borderStyle: "dashed",
-        borderWidth: "3px",
+        borderWidth: "1px",
         borderColor: "#60A5FA",
     }
 
@@ -28,16 +26,18 @@ export const Sprite: React.FC<SpriteProps> = ({ id, text, size }) => {
         left: 0,
         display: "inline-block",
         padding: "1rem",
-        fontSize: size.toString() + "px",
+        fontSize: label.size.toString() + "px",
     };
 
     const style = { ...modelStyle, ...selectedStyle };
     return (
-        <Draggable>
-            <div style={style}>
-                {text}
-            </div >
-        </Draggable>
+        <div id={label.id}>
+            <Draggable>
+                <div style={style}>
+                    {label.text}
+                </div >
+            </Draggable>
+        </div>
     );
 };
 
