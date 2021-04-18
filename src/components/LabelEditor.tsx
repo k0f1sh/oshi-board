@@ -72,25 +72,25 @@ const FontSelector: React.FC<FontSelectorProps> = ({ label, onChange }) => {
                 value={label.font}
                 onChange={onChange}
             >
-                <MenuItem value={"'Dela Gothic One', cursive"}>Dela Gothic One</MenuItem>
-                <MenuItem value={"'DotGothic16', sans-serif"}>DotGothic16</MenuItem>
-                <MenuItem value={"'Hachi Maru Pop', cursive"}>Hachi Maru Pop</MenuItem>
-                <MenuItem value={"'Kiwi Maru', serif"}>Kiwi Maru</MenuItem>
-                <MenuItem value={"'Kosugi', sans-serif"}>Kosugi</MenuItem>
-                <MenuItem value={"'M PLUS 1p', sans-serif"}>M PLUS 1p</MenuItem>
-                <MenuItem value={"'M PLUS Rounded 1c', sans-serif"}>M PLUS Rounded 1c</MenuItem>
-                <MenuItem value={"'New Tegomin', serif"}>New Tegomin</MenuItem>
-                <MenuItem value={"'Noto Sans JP', sans-serif"}>Noto Sans JP</MenuItem>
-                <MenuItem value={"'Potta One', cursive"}>Potta One</MenuItem>
-                <MenuItem value={"'Reggae One', cursive"}>Reggae One</MenuItem>
-                <MenuItem value={"'RocknRoll One', sans-serif"}>RocknRoll One</MenuItem>
-                <MenuItem value={"'Sawarabi Gothic', sans-serif"}>Sawarabi Gothic</MenuItem>
-                <MenuItem value={"'Sawarabi Mincho', sans-serif"}>Sawarabi Mincho</MenuItem>
-                <MenuItem value={"'Shippori Mincho', serif"}>Shippori Mincho</MenuItem>
-                <MenuItem value={"'Shippori Mincho B1', serif"}>Shippori Mincho B1</MenuItem>
-                <MenuItem value={"'Stick', sans-serif"}>Stick</MenuItem>
-                <MenuItem value={"'Train One', cursive"}>Train One</MenuItem>
-                <MenuItem value={"'Yusei Magic', sans-serif"}>Yusei Magic</MenuItem>
+                <MenuItem value={"'Dela Gothic One', cursive"}><span className="pl-2" style={{ fontFamily: "'Dela Gothic One', cursive" }}>Dela Gothic One あいうえお</span></MenuItem>
+                <MenuItem value={"'DotGothic16', sans-serif"}><span className="pl-2" style={{ fontFamily: "'DotGothic16', sans-serif" }}>DotGothic16 あいうえお</span></MenuItem>
+                <MenuItem value={"'Hachi Maru Pop', cursive"}><span className="pl-2" style={{ fontFamily: "'Hachi Maru Pop', cursive" }}>Hachi Maru Pop あいうえお</span></MenuItem>
+                <MenuItem value={"'Kiwi Maru', serif"}><span className="pl-2" style={{ fontFamily: "'Kiwi Maru', serif" }}>Kiwi Maru あいうえお</span></MenuItem>
+                <MenuItem value={"'Kosugi', sans-serif"}><span className="pl-2" style={{ fontFamily: "'Kosugi', sans-serif" }}>Kosugi あいうえお</span></MenuItem>
+                <MenuItem value={"'M PLUS 1p', sans-serif"}><span className="pl-2" style={{ fontFamily: "'M PLUS 1p', sans-serif" }}>M PLUS 1p あいうえお</span></MenuItem>
+                <MenuItem value={"'M PLUS Rounded 1c', sans-serif"}><span className="pl-2" style={{ fontFamily: "'M PLUS Rounded 1c', sans-serif" }}>M PLUS Rounded 1c あいうえお</span></MenuItem>
+                <MenuItem value={"'New Tegomin', serif"}><span className="pl-2" style={{ fontFamily: "'New Tegomin', serif" }}>New Tegomin あいうえお</span></MenuItem>
+                <MenuItem value={"'Noto Sans JP', sans-serif"}><span className="pl-2" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>Noto Sans JP あいうえお</span></MenuItem>
+                <MenuItem value={"'Potta One', cursive"}><span className="pl-2" style={{ fontFamily: "'Potta One', cursive" }}>Potta One あいうえお</span></MenuItem>
+                <MenuItem value={"'Reggae One', cursive"}><span className="pl-2" style={{ fontFamily: "'Reggae One', cursive" }}>Reggae One あいうえお</span></MenuItem>
+                <MenuItem value={"'RocknRoll One', sans-serif"}><span className="pl-2" style={{ fontFamily: "'RocknRoll One', sans-serif" }}>RocknRoll One あいうえお</span></MenuItem>
+                <MenuItem value={"'Sawarabi Gothic', sans-serif"}><span className="pl-2" style={{ fontFamily: "'Sawarabi Gothic', sans-serif" }}>Sawarabi Gothic あいうえお</span></MenuItem>
+                <MenuItem value={"'Sawarabi Mincho', sans-serif"}><span className="pl-2" style={{ fontFamily: "'Sawarabi Mincho', sans-serif" }}>Sawarabi Mincho あいうえお</span></MenuItem>
+                <MenuItem value={"'Shippori Mincho', serif"}><span className="pl-2" style={{ fontFamily: "'Shippori Mincho', serif" }}>Shippori Mincho あいうえお</span></MenuItem>
+                <MenuItem value={"'Shippori Mincho B1', serif"}><span className="pl-2" style={{ fontFamily: "'Shippori Mincho B1', serif" }}>Shippori Mincho B1 あいうえお</span></MenuItem>
+                <MenuItem value={"'Stick', sans-serif"}><span className="pl-2" style={{ fontFamily: "'Stick', sans-serif" }}>Stick あいうえお</span></MenuItem>
+                <MenuItem value={"'Train One', cursive"}><span className="pl-2" style={{ fontFamily: "'Train One', cursive" }}>Train One あいうえお</span></MenuItem>
+                <MenuItem value={"'Yusei Magic', sans-serif"}><span className="pl-2" style={{ fontFamily: "'Yusei Magic', sans-serif" }}>Yusei Magic あいうえお</span></MenuItem>
             </Select>
         </div>
     );
