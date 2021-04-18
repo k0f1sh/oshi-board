@@ -29,6 +29,7 @@ export const Sprite: React.FC<SpriteProps> = ({ label }) => {
         fontSize: label.size.toString() + "px",
         textAlign: "left",
         fontFamily: label.font,
+        color: label.color,
     };
 
     const style = { ...modelStyle, ...selectedStyle };

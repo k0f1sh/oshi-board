@@ -1,17 +1,18 @@
 import { InputLabel, MenuItem, Select, Slider, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { useCallback } from "react";
+import { ColorChangeHandler, ColorResult, CompactPicker, SliderPicker, TwitterPicker } from "react-color";
 import { TextLabel } from "../models/TextLabel";
-
 
 type LabelEditorProps = {
     label: TextLabel;
     updateText: (id: string, newText: string) => void;
     updateSize: (id: string, newSize: number) => void;
     updateFont: (id: string, newFont: string) => void;
+    updateColor: (id: string, newColor: string) => void;
 }
 
-export const LabelEditor: React.FC<LabelEditorProps> = ({ label, updateText, updateSize, updateFont }) => {
+export const LabelEditor: React.FC<LabelEditorProps> = ({ label, updateText, updateSize, updateFont, updateColor }) => {
     const handleChangeText = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         const newText = event.target.value;
         updateText(label.id, newText);
@@ -29,6 +30,11 @@ export const LabelEditor: React.FC<LabelEditorProps> = ({ label, updateText, upd
     const handleChangeFont = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
         updateFont(label.id, event.target.value as string);
     }, [label, updateFont]);
+
+    const handleChangeColor: ColorChangeHandler = useCallback((color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(color);
+        updateColor(label.id, color.hex);
+    }, [label, updateColor]);
 
     return (
         <li id={label.id} className="p-2 bg-white text-gray-700 text-left shadow rounded">
@@ -50,6 +56,12 @@ export const LabelEditor: React.FC<LabelEditorProps> = ({ label, updateText, upd
 
                 </div>
                 <FontSelector label={label} onChange={handleChangeFont} />
+                <div className="p-2 flex">
+                    <Typography className="pr-4" id="size-slider" gutterBottom>
+                        color
+                    </Typography>
+                    <CompactPicker onChange={handleChangeColor} />
+                </div>
             </div>
         </li>
     );

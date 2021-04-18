@@ -5,5 +5,6 @@ export type TextLabel = {
     text: string,
     size: number,
     font: string,
+    color: string,
     cssText: string,
 }

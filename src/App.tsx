@@ -48,6 +48,16 @@ function App() {
     }));
   }, [labels]);
 
+  const updateColor = useCallback((id: string, newColor: string) => {
+    setLables(labels.map((label) => {
+      if (label.id === id) {
+        return { ...label, color: newColor };
+      } else {
+        return label;
+      }
+    }));
+  }, [labels]);
+
   const handleNew = useCallback(() => {
     const newLable: TextLabel = {
       id: uuidv4(),
@@ -55,11 +65,10 @@ function App() {
       size: 40,
       font: "'Noto Sans JP', sans-serif",
       cssText: "",
+      color: "#000000",
     };
     setLables([...labels, newLable]);
   }, [labels]);
-
-
 
   return (
     <div className="App">
@@ -78,7 +87,8 @@ function App() {
               {labels.map(label => <LabelEditor label={label}
                 updateText={updateText}
                 updateSize={updateSize}
-                updateFont={updateFont} />)}
+                updateFont={updateFont}
+                updateColor={updateColor} />)}
             </ul>
           </div>
         </div>
