@@ -27,17 +27,18 @@ export const Sprite: React.FC<SpriteProps> = ({ label }) => {
         display: "inline-block",
         padding: "1rem",
         fontSize: label.size.toString() + "px",
+        textAlign: "left",
     };
 
     const style = { ...modelStyle, ...selectedStyle };
     return (
-        <div id={label.id}>
+        <pre id={label.id}>
             <Draggable>
                 <div style={style}>
                     {label.text}
                 </div >
             </Draggable>
-        </div>
+        </pre>
     );
 };
 

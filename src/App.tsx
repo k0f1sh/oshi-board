@@ -28,6 +28,15 @@ function App() {
     }));
   }, [labels]);
 
+  const updateSize = useCallback((id: string, newSize: number) => {
+    setLables(labels.map((label) => {
+      if (label.id === id) {
+        return { ...label, size: newSize };
+      } else {
+        return label;
+      }
+    }));
+  }, [labels]);
 
   const handleNew = useCallback(() => {
     const newLable: TextLabel = {
@@ -52,8 +61,8 @@ function App() {
             </Button>
           </div>
           <div>
-            <ul className="divide-y">
-              {labels.map(label => <LabelEditor label={label} updateText={updateText} />)}
+            <ul className="divide-y space-y-2">
+              {labels.map(label => <LabelEditor label={label} updateText={updateText} updateSize={updateSize} />)}
             </ul>
           </div>
         </div>
