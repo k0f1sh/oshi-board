@@ -38,15 +38,28 @@ function App() {
     }));
   }, [labels]);
 
+  const updateFont = useCallback((id: string, newFont: string) => {
+    setLables(labels.map((label) => {
+      if (label.id === id) {
+        return { ...label, font: newFont };
+      } else {
+        return label;
+      }
+    }));
+  }, [labels]);
+
   const handleNew = useCallback(() => {
     const newLable: TextLabel = {
       id: uuidv4(),
       text: "",
       size: 40,
+      font: "'Noto Sans JP', sans-serif",
       cssText: "",
     };
     setLables([...labels, newLable]);
   }, [labels]);
+
+
 
   return (
     <div className="App">
@@ -62,7 +75,10 @@ function App() {
           </div>
           <div>
             <ul className="divide-y space-y-2">
-              {labels.map(label => <LabelEditor label={label} updateText={updateText} updateSize={updateSize} />)}
+              {labels.map(label => <LabelEditor label={label}
+                updateText={updateText}
+                updateSize={updateSize}
+                updateFont={updateFont} />)}
             </ul>
           </div>
         </div>
