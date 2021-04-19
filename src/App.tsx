@@ -5,6 +5,7 @@ import './App.css';
 import { LabelEditor } from './components/LabelEditor';
 import { Sprite } from './components/Sprite';
 import { TextLabel } from './models/TextLabel';
+import { onClickStop } from './util';
 
 
 function uuidv4() {
@@ -17,6 +18,7 @@ function uuidv4() {
 
 function App() {
   const [labels, setLables] = useState<TextLabel[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const updateText = useCallback((id: string, newText: string) => {
     setLables(labels.map((label) => {
@@ -70,32 +72,44 @@ function App() {
     setLables([...labels, newLable]);
   }, [labels]);
 
+  const handleSelect = useCallback((id: string | null) => {
+    setSelectedId(id);
+  }, []);
+
+  const resetSelection = useCallback(() => {
+    setSelectedId(null);
+  }, []);
+
   return (
-    <div className="App">
-      <div className="menu">
-        <div className="m-4 p-2 bg-white absolute right-0 top-0 border border-blue-500 text-white w-96 shadow-lg z-50">
-          <div className="m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
-            <h1 className="font-bold text-xl text-blue-600">推しボード メニュー</h1>
-          </div>
-          <div className="p-4 ">
-            <Button variant="outlined" color="primary" onClick={handleNew}>
-              New
+    <div className="App" onClick={resetSelection} style={{ background: "#ffffff", width: "100%", height: "100%" }}>
+      <div onClick={onClickStop}>
+        <div className="menu">
+          <div className="m-4 p-2 bg-white absolute right-0 top-0 border border-blue-500 text-white w-96 shadow-lg z-50">
+            <div className="m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
+              <h1 className="font-bold text-xl text-blue-600">推しボード メニュー</h1>
+            </div>
+            <div className="p-4 ">
+              <Button variant="outlined" color="primary" onClick={handleNew}>
+                New
             </Button>
-          </div>
-          <div>
-            <ul className="divide-y space-y-2">
-              {labels.map(label => <LabelEditor label={label}
-                updateText={updateText}
-                updateSize={updateSize}
-                updateFont={updateFont}
-                updateColor={updateColor} />)}
-            </ul>
+            </div>
+            <div>
+              <ul className="divide-y space-y-2">
+                {labels.map(label => <LabelEditor label={label}
+                  updateText={updateText}
+                  updateSize={updateSize}
+                  updateFont={updateFont}
+                  updateColor={updateColor}
+                  handleSelect={handleSelect}
+                  selectedId={selectedId} />)}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      {/* ------------ */}
-      <div>
-        {labels.map(label => <Sprite label={label} />)}
+        {/* ------------ */}
+        <div>
+          {labels.map(label => <Sprite label={label} handleSelect={handleSelect} selectedId={selectedId} />)}
+        </div>
       </div>
     </div >
   );

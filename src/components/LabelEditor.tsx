@@ -1,18 +1,22 @@
 import { InputLabel, MenuItem, Select, Slider, TextField, Typography } from "@material-ui/core";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { useCallback } from "react";
 import { ColorChangeHandler, ColorResult, CompactPicker, SliderPicker, TwitterPicker } from "react-color";
 import { TextLabel } from "../models/TextLabel";
 
 type LabelEditorProps = {
     label: TextLabel;
+    selectedId: string | null;
     updateText: (id: string, newText: string) => void;
     updateSize: (id: string, newSize: number) => void;
     updateFont: (id: string, newFont: string) => void;
     updateColor: (id: string, newColor: string) => void;
+    handleSelect: (id: string | null) => void;
 }
 
-export const LabelEditor: React.FC<LabelEditorProps> = ({ label, updateText, updateSize, updateFont, updateColor }) => {
+export const LabelEditor: React.FC<LabelEditorProps> = ({ label, selectedId, updateText, updateSize, updateFont, updateColor, handleSelect }) => {
+    const isSelected = label.id === selectedId;
+
     const handleChangeText = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         const newText = event.target.value;
         updateText(label.id, newText);
@@ -37,7 +41,7 @@ export const LabelEditor: React.FC<LabelEditorProps> = ({ label, updateText, upd
     }, [label, updateColor]);
 
     return (
-        <li id={label.id} className="p-2 bg-white text-gray-700 text-left shadow rounded">
+        <li id={label.id} className={"p-2 bg-white text-gray-700 text-left shadow rounded " + (isSelected ? "shadow-lg" : "")}>
             <div>
                 <TextField
                     multiline
