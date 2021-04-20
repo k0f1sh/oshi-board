@@ -1,7 +1,7 @@
-import { InputLabel, MenuItem, Select, Slider, TextField, Typography } from "@material-ui/core";
-import React, { CSSProperties } from "react";
+import { Select, Slider, MenuItem, Typography } from "@material-ui/core";
+import React from "react";
 import { useCallback } from "react";
-import { ColorChangeHandler, ColorResult, CompactPicker, SliderPicker, TwitterPicker } from "react-color";
+import { ColorChangeHandler, ColorResult, CompactPicker } from "react-color";
 import { TextLabel } from "../models/TextLabel";
 
 type StyleEditorProps = {

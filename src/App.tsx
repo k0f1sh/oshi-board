@@ -1,6 +1,5 @@
 import { Button } from '@material-ui/core';
-import { PlusOneOutlined } from '@material-ui/icons';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import './App.css';
 import { LabelEditor } from './components/LabelEditor';
 import { Sprite } from './components/Sprite';
@@ -81,7 +80,7 @@ function App() {
 
   const handleSelect = useCallback((id: string | null) => {
     setSelectedId(id);
-  }, [labels]);
+  }, []);
 
   const handleDelete = useCallback((id: string) => {
     setLables(labels.filter(label => label.id != id));

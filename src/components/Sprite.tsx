@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import Draggable, { DraggableData, DraggableEventHandler } from "react-draggable";
+import Draggable, { DraggableEventHandler } from "react-draggable";
 import { TextLabel } from "../models/TextLabel";
 
 

@@ -1,8 +1,7 @@
-import { IconButton, InputLabel, MenuItem, Select, Slider, TextField, Typography } from "@material-ui/core";
+import { IconButton, TextField } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
-import React, { CSSProperties, useState } from "react";
+import React from "react";
 import { useCallback } from "react";
-import { ColorChangeHandler, ColorResult, CompactPicker, SliderPicker, TwitterPicker } from "react-color";
 import { TextLabel } from "../models/TextLabel";
 
 type LabelEditorProps = {
@@ -15,7 +14,6 @@ type LabelEditorProps = {
 }
 
 
-// selectedLabelが毎回変わるので重いかも?
 export const LabelEditor: React.FC<LabelEditorProps> = ({ id, label, selectedLabel, updateText, handleSelect, handleDelete }) => {
     const isSelected = label === selectedLabel;
 
@@ -30,7 +28,7 @@ export const LabelEditor: React.FC<LabelEditorProps> = ({ id, label, selectedLab
 
     const handleDeleteLabel = useCallback((event: React.MouseEvent<HTMLElement>) => {
         handleDelete(label.id);
-    }, [label, handleSelect]);
+    }, [label, handleDelete]);
 
     return (
         <li id={id} className={"p-2 text-gray-700 text-left rounded border shadow " + (isSelected ? "bg-indigo-50" : "")} onClick={handleSelectLabel}>
