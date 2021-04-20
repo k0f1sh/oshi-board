@@ -4,6 +4,7 @@ import React, { useCallback, useState } from 'react';
 import './App.css';
 import { LabelEditor } from './components/LabelEditor';
 import { Sprite } from './components/Sprite';
+import { StyleEditor } from './components/StyleEditor';
 import { TextLabel } from './models/TextLabel';
 import { onClickStop } from './util';
 
@@ -18,7 +19,7 @@ function uuidv4() {
 
 function App() {
   const [labels, setLables] = useState<TextLabel[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedLabel, setSelectedLabel] = useState<TextLabel | null>(null);
 
   const updateText = useCallback((id: string, newText: string) => {
     setLables(labels.map((label) => {
@@ -73,11 +74,14 @@ function App() {
   }, [labels]);
 
   const handleSelect = useCallback((id: string | null) => {
-    setSelectedId(id);
-  }, []);
+    const l = labels.find(label => label.id === id);
+    if (l !== undefined) {
+      setSelectedLabel(l);
+    }
+  }, [labels]);
 
   const resetSelection = useCallback(() => {
-    setSelectedId(null);
+    setSelectedLabel(null);
   }, []);
 
   return (
@@ -93,22 +97,28 @@ function App() {
                 New
             </Button>
             </div>
+            <div className="mb-8">
+              <p className="text-center text-sm text-gray-500 font-bold border-b border-blue-400">
+                編集
+              </p>
+              <StyleEditor selectedLabel={selectedLabel} updateSize={updateSize} updateFont={updateFont} updateColor={updateColor} />
+            </div>
             <div>
+              <p className="mb-4 text-center text-xs text-gray-500 font-bold border-b border-blue-400">
+                テキスト
+              </p>
               <ul className="divide-y space-y-2">
                 {labels.map(label => <LabelEditor label={label}
                   updateText={updateText}
-                  updateSize={updateSize}
-                  updateFont={updateFont}
-                  updateColor={updateColor}
                   handleSelect={handleSelect}
-                  selectedId={selectedId} />)}
+                  selectedLabel={selectedLabel} />)}
               </ul>
             </div>
           </div>
         </div>
         {/* ------------ */}
         <div>
-          {labels.map(label => <Sprite label={label} handleSelect={handleSelect} selectedId={selectedId} />)}
+          {labels.map(label => <Sprite label={label} handleSelect={handleSelect} selectedLabel={selectedLabel} />)}
         </div>
       </div>
     </div >

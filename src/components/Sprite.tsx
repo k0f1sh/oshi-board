@@ -10,12 +10,12 @@ type Pos = {
 
 type SpriteProps = {
     label: TextLabel;
-    selectedId: string | null;
+    selectedLabel: TextLabel | null;
     handleSelect: (id: string | null) => void;
 }
 
-export const Sprite: React.FC<SpriteProps> = ({ label, selectedId, handleSelect }) => {
-    const isSelected = label.id === selectedId;
+export const Sprite: React.FC<SpriteProps> = ({ label, selectedLabel, handleSelect }) => {
+    const isSelected = label === selectedLabel;
 
     const onStart = useCallback(() => {
         handleSelect(label.id);
