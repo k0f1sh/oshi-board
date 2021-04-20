@@ -2,6 +2,7 @@
   "name": "oshi-board",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://k0f1sh.github.io/oshi-board",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
