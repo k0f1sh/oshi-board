@@ -120,7 +120,7 @@ function App() {
                     <span>テキスト</span>
                   </p>
                   <div className="p-2 flex-grow-0 text-center">
-                    <Button variant="contained" color="primary" onClick={handleNew}>
+                    <Button variant="outlined" color="primary" onClick={handleNew}>
                       <span>New</span>
                     </Button>
                   </div>
