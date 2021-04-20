@@ -126,14 +126,16 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex-grow overflow-auto">
-                  <ul className="space-y-2">
-                    {labels.map(label => <LabelEditor id={label.id} label={label}
-                      updateText={updateText}
-                      handleSelect={handleSelect}
-                      selectedLabel={selectedLabel}
-                      handleDelete={handleDelete} />)}
-                  </ul>
+                <div className="flex-grow overflow-auto" onClick={resetSelection}>
+                  <div onClick={onClickStop}>
+                    <ul className="space-y-2">
+                      {labels.map(label => <LabelEditor id={label.id} label={label}
+                        updateText={updateText}
+                        handleSelect={handleSelect}
+                        selectedLabel={selectedLabel}
+                        handleDelete={handleDelete} />)}
+                    </ul>
+                  </div>
                 </div>
 
               </div>
