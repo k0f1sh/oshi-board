@@ -45,7 +45,7 @@ export const StyleEditor: React.FC<StyleEditorProps> = ({ selectedLabel, updateS
     if (selectedLabel === null) {
         return (<div className={"p-2 bg-white text-gray-700 text-left h-60"}>
             <div className="h-full flex justify-center items-center bg-gray-50">
-                <span className="text-gray-400">not selected</span>
+                <span className="text-gray-400">テキストが選択されていません</span>
             </div>
         </div>);
     }

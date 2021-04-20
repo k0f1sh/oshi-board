@@ -24,7 +24,7 @@ export const LabelEditor: React.FC<LabelEditorProps> = ({ label, selectedLabel, 
     }, [label, handleSelect]);
 
     return (
-        <li id={label.id} className={"p-2 bg-white text-gray-700 text-left shadow rounded " + (isSelected ? "shadow-lg" : "")} onClick={handleSelectLabel}>
+        <li id={label.id} className={"p-2 bg-white text-gray-700 text-left rounded border border-4 " + (isSelected ? "border-indigo-800 border-dashed" : "border-white")} onClick={handleSelectLabel}>
             <div>
                 <TextField
                     multiline

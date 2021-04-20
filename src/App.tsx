@@ -19,7 +19,7 @@ function uuidv4() {
 
 function App() {
   const [labels, setLables] = useState<TextLabel[]>([]);
-  const [selectedLabel, setSelectedLabel] = useState<TextLabel | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const updateText = useCallback((id: string, newText: string) => {
     setLables(labels.map((label) => {
@@ -74,15 +74,14 @@ function App() {
   }, [labels]);
 
   const handleSelect = useCallback((id: string | null) => {
-    const l = labels.find(label => label.id === id);
-    if (l !== undefined) {
-      setSelectedLabel(l);
-    }
+    setSelectedId(id);
   }, [labels]);
 
   const resetSelection = useCallback(() => {
-    setSelectedLabel(null);
+    setSelectedId(null);
   }, []);
+
+  const selectedLabel = labels.find(label => label.id === selectedId) || null;
 
   return (
     <div className="App" onClick={resetSelection} style={{ background: "#ffffff", width: "100%", height: "100%" }}>
@@ -92,22 +91,22 @@ function App() {
             <div className="m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
               <h1 className="font-bold text-xl text-blue-600">推しボード メニュー</h1>
             </div>
-            <div className="p-4 ">
+            <div className="p-4">
               <Button variant="outlined" color="primary" onClick={handleNew}>
                 New
             </Button>
             </div>
-            <div className="mb-8">
+            <div className="mb-8 select-non">
               <p className="text-center text-sm text-gray-500 font-bold border-b border-blue-400">
                 編集
               </p>
               <StyleEditor selectedLabel={selectedLabel} updateSize={updateSize} updateFont={updateFont} updateColor={updateColor} />
             </div>
-            <div>
+            <div className="select-none">
               <p className="mb-4 text-center text-xs text-gray-500 font-bold border-b border-blue-400">
                 テキスト
               </p>
-              <ul className="divide-y space-y-2">
+              <ul className="space-y-2">
                 {labels.map(label => <LabelEditor label={label}
                   updateText={updateText}
                   handleSelect={handleSelect}
