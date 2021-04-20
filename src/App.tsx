@@ -104,7 +104,7 @@ function App() {
                 <div className="flex justify-between m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
                   <h1 className="text-center font-bold text-xl text-blue-600">推しボード メニュー</h1>
                   <Button size="small" variant="outlined" color="primary" onClick={toggleOpen}>
-                    <span>hide</span>
+                    <span>close</span>
                   </Button>
                 </div>
 
