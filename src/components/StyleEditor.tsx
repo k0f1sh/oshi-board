@@ -65,7 +65,7 @@ export const StyleEditor: React.FC<StyleEditorProps> = ({ selectedLabel, updateS
                     <Typography className="pr-4" id="size-slider" gutterBottom>
                         color
                     </Typography>
-                    <CompactPicker onChange={handleChangeColor} />
+                    <CompactPicker onChange={handleChangeColor} color={selectedLabel.color} />
                 </div>
             </div>
         </div>
