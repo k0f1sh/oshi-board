@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import Draggable from "react-draggable";
+import Draggable, { DraggableData, DraggableEventHandler } from "react-draggable";
 import { TextLabel } from "../models/TextLabel";
 
 
@@ -12,15 +12,19 @@ type SpriteProps = {
     label: TextLabel;
     selectedLabel: TextLabel | null;
     handleSelect: (id: string | null) => void;
+    handlePos: (id: string, pos: Pos) => void;
 }
 
-export const Sprite: React.FC<SpriteProps> = ({ label, selectedLabel, handleSelect }) => {
+export const Sprite: React.FC<SpriteProps> = ({ label, selectedLabel, handleSelect, handlePos }) => {
     const isSelected = label === selectedLabel;
 
     const onStart = useCallback(() => {
         handleSelect(label.id);
     }, [label.id, handleSelect]);
 
+    const handleDrag: DraggableEventHandler = useCallback((e, data) => {
+        handlePos(label.id, { x: data.x, y: data.y });
+    }, [label, handlePos]);
 
     const selectedStyle: React.CSSProperties = {
         borderStyle: "dashed",
@@ -46,9 +50,11 @@ export const Sprite: React.FC<SpriteProps> = ({ label, selectedLabel, handleSele
     if (isSelected) {
         style = { ...style, ...selectedStyle };
     }
+
+
     return (
         <pre id={label.id} className="z-10">
-            <Draggable onStart={onStart}>
+            <Draggable onStart={onStart} onStop={handleDrag} position={label.pos}>
                 <div style={style}>
                     {label.text}
                 </div >

@@ -5,7 +5,7 @@ import './App.css';
 import { LabelEditor } from './components/LabelEditor';
 import { Sprite } from './components/Sprite';
 import { StyleEditor } from './components/StyleEditor';
-import { TextLabel } from './models/TextLabel';
+import { Pos, TextLabel } from './models/TextLabel';
 import { onClickStop } from './util';
 
 
@@ -65,6 +65,7 @@ function App() {
   const handleNew = useCallback(() => {
     const newLable: TextLabel = {
       id: uuidv4(),
+      pos: { x: 0, y: 0 },
       text: "",
       size: 60,
       font: "'Noto Sans JP', sans-serif",
@@ -85,6 +86,16 @@ function App() {
   const resetSelection = useCallback(() => {
     setSelectedId(null);
   }, []);
+
+  const handlePos = useCallback((id: string, pos: Pos) => {
+    setLables(labels.map(label => {
+      if (label.id === id) {
+        return { ...label, pos }
+      } else {
+        return label
+      }
+    }))
+  }, [labels]);
 
   const selectedLabel = labels.find(label => label.id === selectedId) || null;
 
@@ -119,7 +130,7 @@ function App() {
 
                 <div className="flex-grow overflow-auto">
                   <ul className="space-y-2">
-                    {labels.map(label => <LabelEditor label={label}
+                    {labels.map(label => <LabelEditor id={label.id} label={label}
                       updateText={updateText}
                       handleSelect={handleSelect}
                       selectedLabel={selectedLabel}
@@ -135,7 +146,7 @@ function App() {
         }
         {/* ------------ */}
         <div>
-          {labels.map(label => <Sprite label={label} handleSelect={handleSelect} selectedLabel={selectedLabel} />)}
+          {labels.map(label => <Sprite label={label} handleSelect={handleSelect} selectedLabel={selectedLabel} handlePos={handlePos} />)}
         </div>
       </div>
     </div >

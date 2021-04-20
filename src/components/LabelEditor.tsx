@@ -1,11 +1,12 @@
 import { IconButton, InputLabel, MenuItem, Select, Slider, TextField, Typography } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import { useCallback } from "react";
 import { ColorChangeHandler, ColorResult, CompactPicker, SliderPicker, TwitterPicker } from "react-color";
 import { TextLabel } from "../models/TextLabel";
 
 type LabelEditorProps = {
+    id: string;
     label: TextLabel;
     selectedLabel: TextLabel | null;
     updateText: (id: string, newText: string) => void;
@@ -13,8 +14,9 @@ type LabelEditorProps = {
     handleDelete: (id: string) => void;
 }
 
+
 // selectedLabelが毎回変わるので重いかも?
-export const LabelEditor: React.FC<LabelEditorProps> = ({ label, selectedLabel, updateText, handleSelect, handleDelete }) => {
+export const LabelEditor: React.FC<LabelEditorProps> = ({ id, label, selectedLabel, updateText, handleSelect, handleDelete }) => {
     const isSelected = label === selectedLabel;
 
     const handleChangeText = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +33,7 @@ export const LabelEditor: React.FC<LabelEditorProps> = ({ label, selectedLabel, 
     }, [label, handleSelect]);
 
     return (
-        <li id={label.id} className={"p-2 text-gray-700 text-left rounded border border-4 " + (isSelected ? "border-indigo-800 border-dashed" : "border-white")} onClick={handleSelectLabel}>
+        <li id={id} className={"p-2 text-gray-700 text-left rounded border border-4 " + (isSelected ? "border-indigo-800 border-dashed" : "border-white")} onClick={handleSelectLabel}>
             <div className="flex flex-row justify-between items-center">
                 <TextField
                     multiline
