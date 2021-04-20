@@ -58,7 +58,7 @@ function App() {
   }, [labels]);
 
   const handleNew = useCallback(() => {
-    const newLable: TextLabel = {
+    const newLabel: TextLabel = {
       id: generateId(),
       pos: { x: 0, y: 0 },
       text: "",
@@ -67,7 +67,8 @@ function App() {
       cssText: "",
       color: "#4D4D4D",
     };
-    setLables([...labels, newLable]);
+    setLables([...labels, newLabel]);
+    setSelectedId(newLabel.id);
   }, [labels]);
 
   const handleSelect = useCallback((id: string | null) => {
