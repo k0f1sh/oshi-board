@@ -51,7 +51,7 @@ export const StyleEditor: React.FC<StyleEditorProps> = ({ selectedLabel, updateS
     }
 
     return (
-        <div className={"p-2 bg-white text-gray-700 text-left h-60"}>
+        <div className={"p-2 text-gray-700 text-left h-60"}>
             <div>
                 <div className="p-2 flex">
                     <Typography className="pr-4" id="size-slider" gutterBottom>

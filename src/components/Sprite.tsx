@@ -47,7 +47,7 @@ export const Sprite: React.FC<SpriteProps> = ({ label, selectedLabel, handleSele
         style = { ...style, ...selectedStyle };
     }
     return (
-        <pre id={label.id}>
+        <pre id={label.id} className="z-10">
             <Draggable onStart={onStart}>
                 <div style={style}>
                     {label.text}

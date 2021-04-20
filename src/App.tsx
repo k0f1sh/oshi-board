@@ -78,6 +78,10 @@ function App() {
     setSelectedId(id);
   }, [labels]);
 
+  const handleDelete = useCallback((id: string) => {
+    setLables(labels.filter(label => label.id != id));
+  }, [labels]);
+
   const resetSelection = useCallback(() => {
     setSelectedId(null);
   }, []);
@@ -88,8 +92,8 @@ function App() {
     <div className="App" onClick={resetSelection} style={{ background: "#ffffff", width: "100%", height: "100%" }}>
       <div onClick={onClickStop}>
         {menuOpen ?
-          <div className="menu bg-opacity-25">
-            <div style={{ height: "90%" }} className="m-4 p-2 bg-white absolute right-0 top-0 border border-blue-500 text-white w-96 shadow-lg z-50">
+          <div className="menu">
+            <div style={{ height: "90%" }} className="bg-opacity-80 m-4 p-2 bg-white absolute right-0 top-0 border border-blue-500 text-white w-96 shadow-lg z-50">
               <div className="flex flex-col h-full">
                 <div className="m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
                   <h1 className="text-center font-bold text-xl text-blue-600">推しボード メニュー</h1>
@@ -106,8 +110,8 @@ function App() {
                   <p className="text-xs text-gray-500 font-bold">
                     <span>テキスト</span>
                   </p>
-                  <div className="p-2 flex-grow-0">
-                    <Button variant="outlined" color="primary" onClick={handleNew}>
+                  <div className="p-2 flex-grow-0 text-center">
+                    <Button variant="contained" color="primary" onClick={handleNew}>
                       <span>New</span>
                     </Button>
                   </div>
@@ -118,7 +122,8 @@ function App() {
                     {labels.map(label => <LabelEditor label={label}
                       updateText={updateText}
                       handleSelect={handleSelect}
-                      selectedLabel={selectedLabel} />)}
+                      selectedLabel={selectedLabel}
+                      handleDelete={handleDelete} />)}
                   </ul>
                 </div>
 
