@@ -5,15 +5,7 @@ import { LabelEditor } from './components/LabelEditor';
 import { Sprite } from './components/Sprite';
 import { StyleEditor } from './components/StyleEditor';
 import { Pos, TextLabel } from './models/TextLabel';
-import { onClickStop } from './util';
-
-
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
+import { generateId, onClickStop } from './util';
 
 
 function App() {
@@ -67,13 +59,13 @@ function App() {
 
   const handleNew = useCallback(() => {
     const newLable: TextLabel = {
-      id: uuidv4(),
+      id: generateId(),
       pos: { x: 0, y: 0 },
       text: "",
       size: 60,
-      font: "'Noto Sans JP', sans-serif",
+      font: "'Dela Gothic One', cursive",
       cssText: "",
-      color: "#000000",
+      color: "#4D4D4D",
     };
     setLables([...labels, newLable]);
   }, [labels]);
@@ -83,7 +75,7 @@ function App() {
   }, []);
 
   const handleDelete = useCallback((id: string) => {
-    setLables(labels.filter(label => label.id != id));
+    setLables(labels.filter(label => label.id !== id));
   }, [labels]);
 
   const resetSelection = useCallback(() => {
