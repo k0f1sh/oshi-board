@@ -20,6 +20,7 @@ function uuidv4() {
 function App() {
   const [labels, setLables] = useState<TextLabel[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState<boolean>(true);
 
   const updateText = useCallback((id: string, newText: string) => {
     setLables(labels.map((label) => {
@@ -65,7 +66,7 @@ function App() {
     const newLable: TextLabel = {
       id: uuidv4(),
       text: "",
-      size: 40,
+      size: 60,
       font: "'Noto Sans JP', sans-serif",
       cssText: "",
       color: "#000000",
@@ -86,35 +87,47 @@ function App() {
   return (
     <div className="App" onClick={resetSelection} style={{ background: "#ffffff", width: "100%", height: "100%" }}>
       <div onClick={onClickStop}>
-        <div className="menu">
-          <div className="m-4 p-2 bg-white absolute right-0 top-0 border border-blue-500 text-white w-96 shadow-lg z-50">
-            <div className="m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
-              <h1 className="font-bold text-xl text-blue-600">推しボード メニュー</h1>
-            </div>
-            <div className="p-4">
-              <Button variant="outlined" color="primary" onClick={handleNew}>
-                New
-            </Button>
-            </div>
-            <div className="mb-8 select-non">
-              <p className="text-center text-sm text-gray-500 font-bold border-b border-blue-400">
-                編集
-              </p>
-              <StyleEditor selectedLabel={selectedLabel} updateSize={updateSize} updateFont={updateFont} updateColor={updateColor} />
-            </div>
-            <div className="select-none">
-              <p className="mb-4 text-center text-xs text-gray-500 font-bold border-b border-blue-400">
-                テキスト
-              </p>
-              <ul className="space-y-2">
-                {labels.map(label => <LabelEditor label={label}
-                  updateText={updateText}
-                  handleSelect={handleSelect}
-                  selectedLabel={selectedLabel} />)}
-              </ul>
+        {menuOpen ?
+          <div className="menu bg-opacity-25">
+            <div style={{ height: "90%" }} className="m-4 p-2 bg-white absolute right-0 top-0 border border-blue-500 text-white w-96 shadow-lg z-50">
+              <div className="flex flex-col h-full">
+                <div className="m-0 p-1" style={{ borderBottom: "blue 1px solid" }}>
+                  <h1 className="text-center font-bold text-xl text-blue-600">推しボード メニュー</h1>
+                </div>
+
+                <div className="flex-none m-2 select-none">
+                  <p className="text-sm text-gray-500 font-bold">
+                    <span>編集</span>
+                  </p>
+                  <StyleEditor selectedLabel={selectedLabel} updateSize={updateSize} updateFont={updateFont} updateColor={updateColor} />
+                </div>
+
+                <div className="flex-none select-none">
+                  <p className="text-xs text-gray-500 font-bold">
+                    <span>テキスト</span>
+                  </p>
+                  <div className="p-2 flex-grow-0">
+                    <Button variant="outlined" color="primary" onClick={handleNew}>
+                      <span>New</span>
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="flex-grow overflow-auto">
+                  <ul className="space-y-2">
+                    {labels.map(label => <LabelEditor label={label}
+                      updateText={updateText}
+                      handleSelect={handleSelect}
+                      selectedLabel={selectedLabel} />)}
+                  </ul>
+                </div>
+
+              </div>
             </div>
           </div>
-        </div>
+          :
+          <div>メニューを開く</div>
+        }
         {/* ------------ */}
         <div>
           {labels.map(label => <Sprite label={label} handleSelect={handleSelect} selectedLabel={selectedLabel} />)}
